@@ -128,7 +128,7 @@ void MainWindow::openFile()
 
 void MainWindow::cutFile()
 {
-    QString outFile = fileInfo.path() + "/" + fileInfo.baseName() + "_cut." + fileInfo.suffix();
+    QString outFile = fileInfo.absoluteFilePath().remove( "." + fileInfo.suffix()) + "_cut." + fileInfo.suffix();
 
     if(QFile::exists(outFile))
     {
