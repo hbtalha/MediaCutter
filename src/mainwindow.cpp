@@ -171,7 +171,6 @@ void MainWindow::cutFile()
     {
         cutting = false; // extra safety
         openButton->setEnabled(true);
-        cutPushButton->setEnabled(true);
     });
     connect(process, &QProcess::readyRead, this, [process]
     {
