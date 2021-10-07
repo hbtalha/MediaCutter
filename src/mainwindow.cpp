@@ -129,16 +129,32 @@ void MainWindow::openFile()
 void MainWindow::cutFile()
 {
     QString outFile = fileInfo.absoluteFilePath().remove( "." + fileInfo.suffix()) + "_cut." + fileInfo.suffix();
+    int newDuration = slider->maximumValue() - slider->minimumValue();
+
+    bool ok = true;
+    QString errorMessage;
 
     if(QFile::exists(outFile))
     {
-        notificationLabel.setText("Output file alerady exists");
+        errorMessage = "Output file alerady exists";
+        ok = false;
+    }
+
+    if(newDuration <= 0)
+    {
+        errorMessage = "Invalid duration";
+        ok = false;
+    }
+
+    if( ! ok)
+    {
+        notificationLabel.setText(errorMessage);
         QTimer::singleShot(3000, this, [this] { notificationLabel.clear(); });
         return;
     }
 
     QStringList args;
-    args << "-ss" << QString::number(slider->minimumValue()) << "-t" << QString::number(slider->maximumValue() - slider->minimumValue())
+    args << "-ss" << QString::number(slider->minimumValue()) << "-t" << QString::number(newDuration)
          << "-i" << fileInfo.absoluteFilePath() << "-c:a" << "copy"
          << outFile;
 
