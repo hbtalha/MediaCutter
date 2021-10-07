@@ -249,6 +249,7 @@ void MainWindow::getFileDuration()
             int duration = output.toInt();
             slider->setMaximum(duration);
             slider->setMaximumValue(duration);
+            slider->setMinimumValue(0);
             QString formattedDuration = formattedTime(duration);
             audioDurationLabel.setText(formattedDuration);
             fromDurationLabel.setText("00:00");
