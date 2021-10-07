@@ -1,5 +1,10 @@
 # MediaCutter
 Simple cross-platform Qt app to trim media files created for personal use.
+<div align="center">
+
+<img src="https://github.com/hbtalha/MediaCutter/blob/main/ScreenShot/app_screenshot.png" alt="screenshot" />
+
+</div>
 
 # Dependencies
  - ffmpeg
