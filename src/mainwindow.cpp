@@ -70,8 +70,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->setCentralWidget(mainWidget);
 
     this->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
-    this->setMinimumSize(QSize(480,72));
-    this->setMaximumHeight(130);
+    this->setFixedHeight(107);
+    this->resize(480, this->height());
 
     connect(openButton, &QPushButton::clicked, this, &MainWindow::openFile);
     connectCutButton();
@@ -193,7 +193,8 @@ void MainWindow::cutFile()
         qDebug() << process->readAll();
     });
 
-    process->start("ffmpeg", args);
+    qDebug() << this->size();
+//    process->start("ffmpeg", args);
     cutting = true;
     notificationLabel.setText("Cutting...");
     cutPushButton->setText("Stop");
