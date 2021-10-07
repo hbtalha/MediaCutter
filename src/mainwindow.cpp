@@ -170,6 +170,7 @@ void MainWindow::cutFile()
     connect(process, &QProcess::finished, this, [this]
     {
         cutting = false; // extra safety
+        openButton->setEnabled(true);
         cutPushButton->setEnabled(true);
     });
     connect(process, &QProcess::readyRead, this, [process]
@@ -181,6 +182,7 @@ void MainWindow::cutFile()
     cutting = true;
     notificationLabel.setText("Cutting...");
     cutPushButton->setText("Stop");
+    openButton->setDisabled(true);
 
     disconnect(cutPushButton, &QPushButton::clicked, nullptr, nullptr);
     connect(cutPushButton, &QPushButton::clicked, this, [this, process]
