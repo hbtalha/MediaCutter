@@ -245,7 +245,7 @@ void MainWindow::getFileDuration()
         cutPushButton->setEnabled(true);
     });
 
-    process->start("ffprobe.exe", args);
+    process->start("ffprobe", args);
 }
 
 QString MainWindow::formattedTime(int secs)
