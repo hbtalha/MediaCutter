@@ -193,7 +193,6 @@ void MainWindow::cutFile()
         qDebug() << process->readAll();
     });
 
-    qDebug() << this->size();
     process->start("ffmpeg", args);
     cutting = true;
     notificationLabel.setText("Cutting...");
