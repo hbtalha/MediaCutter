@@ -128,7 +128,7 @@ void MainWindow::openFile()
 
 void MainWindow::cutFile()
 {
-    QString outFile = fileInfo.absoluteFilePath().remove( "." + fileInfo.suffix()) + "_cut." + fileInfo.suffix();
+    QString outFile = fileInfo.absoluteFilePath().remove( "." + fileInfo.suffix()) + "_cut." + fileInfo.suffix(); // TODO: enumerate
     int newDuration = slider->maximumValue() - slider->minimumValue();
 
     bool ok = true;
@@ -187,6 +187,7 @@ void MainWindow::cutFile()
     {
         cutting = false; // extra safety
         openButton->setEnabled(true);
+        slider->setEnabled(true);
     });
     connect(process, &QProcess::readyRead, this, [process]
     {
@@ -198,6 +199,7 @@ void MainWindow::cutFile()
     notificationLabel.setText("Cutting...");
     cutPushButton->setText("Stop");
     openButton->setDisabled(true);
+    slider->setDisabled(true);
 
     disconnect(cutPushButton, &QPushButton::clicked, nullptr, nullptr);
     connect(cutPushButton, &QPushButton::clicked, this, [this, process]
